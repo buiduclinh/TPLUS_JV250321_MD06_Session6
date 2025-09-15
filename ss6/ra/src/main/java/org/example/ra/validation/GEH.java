@@ -34,4 +34,5 @@ public class GEH {
         apiError.setErrors(Map.of("", apiError.getErrors().getOrDefault("message", "")));
         return new ResponseEntity<>(apiError, HttpStatus.BAD_REQUEST);
     }
+
 }

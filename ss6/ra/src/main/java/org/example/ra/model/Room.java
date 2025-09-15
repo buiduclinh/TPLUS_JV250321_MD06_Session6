@@ -23,10 +23,9 @@ public class Room {
     @Column(nullable = false, unique = true)
     private String roomNumber;
 
-    @NotNull(message = "Can't blank this")
-    @Pattern(regexp = "SINGLE|DOUBLE|SUITE",message = "type error")
-    @Enumerated(EnumType.STRING)
-    private Type type;
+    @NotBlank(message = "Can't blank this")
+    @Pattern(regexp = "SINGLE|DOUBLE|SUITE",message = "type error,type only receive value: SINGLE/DOUBLE/SUITE")
+    private String type;
 
     @NotNull(message = "Can't not blank")
     @Positive
@@ -36,10 +35,9 @@ public class Room {
     @NotNull(message = "Can't not blank")
     private int capacity;
 
-    @Pattern(regexp = "AVAILABLE|BOOKED|MAINTENANCE",message = "status error")
-    @Enumerated(EnumType.STRING)
-
-    private Status status;
+    @NotBlank(message = "Can't blank this")
+    @Pattern(regexp = "AVAILABLE|BOOKED|MAINTENANCE",message = "status error,status only receive value : AVAILABLE/BOOKED/MAINTENANCE")
+    private String status;
 
     private String image;
 }
