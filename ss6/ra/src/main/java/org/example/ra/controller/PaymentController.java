@@ -23,13 +23,13 @@ public class PaymentController {
 
     @PostMapping
     public ResponseEntity<APIDataResponse<Payment>> createBooking(@RequestParam Long roomId, @RequestParam Long bookingId, @Valid @RequestBody Payment payment) {
-        APIDataResponse<Payment> response = paymentService.createPayment(roomId,bookingId,payment);
-        return ResponseEntity.created(URI.create("/payments/"+response.getData().getId())).body(response);
+        APIDataResponse<Payment> response = paymentService.createPayment(roomId, bookingId, payment);
+        return ResponseEntity.created(URI.create("/payments/" + response.getData().getId())).body(response);
     }
 
     @GetMapping("/getBookingRevenue")
-    public ResponseEntity<APIDataResponse<Page<BookingRevenueDTO>>>  getBookingRevenue(int page, int size, Sort sort, LocalDateTime paidAt) {
-        APIDataResponse<Page<BookingRevenueDTO>>  response = paymentService.getBookingRevenue(page, size, sort, paidAt);
+    public ResponseEntity<APIDataResponse<Page<BookingRevenueDTO>>> getBookingRevenue(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size, @RequestParam LocalDateTime paidAt) {
+        APIDataResponse<Page<BookingRevenueDTO>> response = paymentService.getBookingRevenue(page, size, paidAt);
         return ResponseEntity.ok(response);
     }
 }
